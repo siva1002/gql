@@ -5,6 +5,7 @@ from django.db import models
 
 class Category(models.Model):
     name=models.CharField(max_length=50,blank=True,null=True)
+    # sort_order=models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -19,4 +20,4 @@ class Ingredients(models.Model):
     category=models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,related_name='ingredients',related_query_name="category")
 
     def __str__(self):
-        return f"{self.name} {self.category.name}"
+        return f"{self.name} {getattr(self.category,'name')}"

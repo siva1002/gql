@@ -19,3 +19,9 @@ class UserForm(forms.ModelForm,metaclass=CustomMetaClass):
         
         return super().save(commit=True)
     
+
+class UploadForm(forms.Form):
+    file=forms.FileField()
+    # name=forms.CharField()
+
+    

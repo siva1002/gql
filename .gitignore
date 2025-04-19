@@ -1,6 +1,6 @@
 .vscode
 .gql
-*.__pycache__
+*.pyc
 venv
 .devcontainer
 .dockerignore

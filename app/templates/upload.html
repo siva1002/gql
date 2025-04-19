@@ -1,0 +1,12 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <div class="content">
+    <form method="post" enctype="multipart/form-data">
+        {{form.errors}}
+        {% csrf_token %}
+        {{ form.as_p }}
+      <button type="submit" class="default">Submit</button>
+    </form>
+  </div>
+{% endblock %}
