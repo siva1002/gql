@@ -1,4 +1,4 @@
-import graphene,enum
+import graphene,enum,logging
 from app.django_schema import CategoriesSchema,UserSchema
 from graphene_django.filter import DjangoFilterConnectionField
 from app.models import Category
@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import get_user_model
+
 
 
 class Options(enum.Enum):
@@ -32,13 +33,15 @@ class GraphSchema(graphene.ObjectType):
     validate_token=graphene.Field(graphene.String,token=graphene.String())
 
     def resolve_greet(self,info,*args,**kwargs):
-        token=default_token_generator.make_token(info.context.user)
-        print(token)
+        # token=default_token_generator.make_token(info.context.user)
+        # print(token)
+        logging.getLogger('django').info("Greet function called")
+
         return "Hello"
     def resolve_validate_token(self,info,token,*args,**kwds):
         token=default_token_generator.check_token(info.context.user,token)
         print(token)
-        return 'Hello'
+        return 'Hello !!'
 
 class CategoryQuery(graphene.ObjectType):
     category=graphene.Node.Field(CategoriesSchema)
