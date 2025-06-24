@@ -41,7 +41,7 @@ class GraphSchema(graphene.ObjectType):
     def resolve_validate_token(self,info,token,*args,**kwds):
         token=default_token_generator.check_token(info.context.user,token)
         print(token)
-        return 'Hello !'
+        return 'Hello Developer!'
 
 class CategoryQuery(graphene.ObjectType):
     category=graphene.Node.Field(CategoriesSchema)
